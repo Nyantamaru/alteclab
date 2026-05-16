@@ -1,973 +1,1534 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alteclab El Salvador | Alteclab Laboratorios Centro America</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --blue: #003f8a;
-    --blue-mid: #005cb8;
-    --blue-light: #0072ce;
-    --accent: #e8041b;
-    --gray-light: #f5f7fa;
-    --gray: #666;
-    --white: #fff;
-    --text: #222;
-    --border: #dde4ed;
-  }
-  body { font-family: 'Open Sans', sans-serif; color: var(--text); font-size: 15px; }
-  a { text-decoration: none; color: inherit; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alteclab El Salvador | Alteclab Laboratorios Centro America</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ── TOP BAR ── */
-  .topbar {
-    background: var(--blue);
-    color: #fff;
-    font-size: 12px;
-    padding: 6px 0;
-  }
-  .topbar .inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-  .topbar .left { display: flex; gap: 20px; align-items: center; }
-  .topbar .left a { color: #fff; display: flex; align-items: center; gap: 5px; font-weight: 500; }
-  .topbar .left a:hover { color: #a8cfff; }
-  .topbar .right { display: flex; gap: 12px; align-items: center; }
-  .topbar .right a {
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .3px;
-    transition: background .2s;
-  }
-  .topbar .right a:hover { background: var(--blue-light); }
-  .social-icons { display: flex; gap: 8px; }
-  .social-icons a {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; color: #fff;
-    transition: background .2s;
-  }
-  .social-icons a:hover { background: var(--blue-light); }
+    :root {
+      --blue: #003f8a;
+      --blue-mid: #005cb8;
+      --blue-light: #0072ce;
+      --accent: #e8041b;
+      --gray-light: #f5f7fa;
+      --gray: #666;
+      --white: #fff;
+      --text: #222;
+      --border: #dde4ed;
+    }
 
-  /* ── MAIN NAV ── */
-  nav.main-nav {
-    background: #fff;
-    border-bottom: 3px solid var(--blue);
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,.08);
-  }
-  nav.main-nav .inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 70px;
-  }
-  .nav-logo img { height: 52px; }
-  .nav-logo span {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    color: var(--blue);
-    letter-spacing: -1px;
-  }
-  .nav-links { display: flex; gap: 0; list-style: none; height: 100%; }
-  .nav-links > li { position: relative; }
-  .nav-links > li > a {
-    display: flex; align-items: center; gap: 4px;
-    padding: 0 14px;
-    height: 70px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--blue);
-    letter-spacing: .2px;
-    transition: color .2s, background .2s;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -3px;
-  }
-  .nav-links > li > a:hover,
-  .nav-links > li > a.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    background: #fdf0f1;
-  }
-  .nav-links > li > a .arrow { font-size: 9px; opacity: .6; }
-  .nav-links > li:hover .dropdown { display: block; }
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%; left: 0;
-    background: #fff;
-    min-width: 220px;
-    border-top: 3px solid var(--accent);
-    box-shadow: 0 8px 24px rgba(0,0,0,.12);
-    z-index: 200;
-  }
-  .dropdown li { border-bottom: 1px solid var(--border); }
-  .dropdown li a {
-    display: block;
-    padding: 11px 20px;
-    font-size: 13px;
-    color: var(--blue);
-    font-weight: 500;
-    transition: background .15s, color .15s;
-  }
-  .dropdown li a:hover { background: var(--gray-light); color: var(--accent); padding-left: 26px; }
-  .nav-cta {
-    background: var(--accent);
-    color: #fff !important;
-    border-radius: 4px;
-    padding: 10px 20px !important;
-    height: auto !important;
-    border-bottom: none !important;
-    font-size: 13px;
-    font-weight: 700;
-    transition: background .2s !important;
-  }
-  .nav-cta:hover { background: #b80215 !important; color: #fff !important; background-color: #b80215 !important; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text);
+      font-size: 15px;
+    }
 
-  /* ── HERO SLIDER ── */
-  .hero {
-    position: relative;
-    background: linear-gradient(120deg, var(--blue) 0%, #001f5c 100%);
-    min-height: 520px;
-    display: flex; align-items: center;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="40" fill="rgba(255,255,255,0.04)"/><circle cx="10" cy="80" r="50" fill="rgba(255,255,255,0.03)"/></svg>') no-repeat center/cover;
-  }
-  .hero .inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 24px;
-    position: relative; z-index: 2;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-  }
-  .hero-text .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 2px;
-    margin-bottom: 18px;
-  }
-  .hero-text h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 46px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: 18px;
-    letter-spacing: -1px;
-  }
-  .hero-text h1 span { color: #7ec8ff; }
-  .hero-text p {
-    color: rgba(255,255,255,.75);
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 32px;
-    max-width: 420px;
-  }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    padding: 14px 32px;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    transition: background .2s, transform .2s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: #b80215; transform: translateY(-1px); }
-  .btn-outline {
-    border: 2px solid rgba(255,255,255,.5);
-    color: #fff;
-    padding: 12px 28px;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    transition: border-color .2s, background .2s;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
-  .hero-img {
-    display: flex; justify-content: center; align-items: center;
-  }
-  .hero-card {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 16px;
-    padding: 32px;
-    width: 100%;
-    max-width: 380px;
-  }
-  .hero-card .stat { margin-bottom: 18px; }
-  .hero-card .stat-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 38px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1;
-  }
-  .hero-card .stat-num span { color: #7ec8ff; font-size: 22px; }
-  .hero-card .stat-label { color: rgba(255,255,255,.6); font-size: 12px; letter-spacing: .5px; margin-top: 3px; }
-  .hero-card hr { border: none; border-top: 1px solid rgba(255,255,255,.15); margin: 16px 0; }
-  .slider-dots {
-    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 8px; z-index: 3;
-  }
-  .slider-dots span {
-    width: 28px; height: 4px; border-radius: 2px;
-    background: rgba(255,255,255,.3);
-    cursor: pointer; transition: background .2s;
-  }
-  .slider-dots span.active { background: #fff; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-  /* ── SERVICES GRID ── */
-  section.services { padding: 70px 0; background: var(--gray-light); }
-  section.services .inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .section-title {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 10px;
-    letter-spacing: -.5px;
-  }
-  .section-sub {
-    text-align: center;
-    color: var(--gray);
-    margin-bottom: 48px;
-    font-size: 15px;
-  }
-  .section-sub::after {
-    content: '';
-    display: block;
-    width: 50px; height: 3px;
-    background: var(--accent);
-    margin: 14px auto 0;
-    border-radius: 2px;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .service-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0,0,0,.06);
-    transition: transform .25s, box-shadow .25s;
-    cursor: pointer;
-  }
-  .service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
-  .service-card .card-img {
-    width: 100%; height: 190px;
-    background: linear-gradient(135deg, var(--blue) 0%, #0072ce 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 48px;
-    overflow: hidden;
-    position: relative;
-  }
-  .service-card .card-img img { width: 100%; height: 100%; object-fit: cover; }
-  .service-card .card-img .img-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--blue) 0%, #004a9a 100%);
-  }
-  .service-card .card-img .img-placeholder .icon { font-size: 44px; margin-bottom: 8px; }
-  .service-card .card-body { padding: 22px 24px 24px; }
-  .service-card h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 10px;
-  }
-  .service-card p { color: var(--gray); font-size: 13px; line-height: 1.65; margin-bottom: 16px; }
-  .service-card a.card-link {
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .3px;
-    display: inline-flex; align-items: center; gap: 5px;
-    transition: gap .2s;
-  }
-  .service-card a.card-link:hover { gap: 9px; }
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 0;
+    }
 
-  /* ── STAFF BANNER ── */
-  .staff-banner {
-    background: linear-gradient(90deg, var(--blue) 0%, #005cb8 100%);
-    padding: 60px 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .staff-banner::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,.02) 20px, rgba(255,255,255,.02) 40px);
-  }
-  .staff-banner .inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    display: flex; align-items: center; justify-content: space-between; gap: 40px;
-    position: relative; z-index: 1;
-  }
-  .staff-banner h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.2;
-    max-width: 500px;
-  }
-  .staff-banner h2 span { color: #7ec8ff; }
-  .staff-banner p { color: rgba(255,255,255,.75); margin-top: 12px; max-width: 480px; font-size: 15px; line-height: 1.6; }
+    .topbar .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
 
-  /* ── BRANCHES ── */
-  section.branches { padding: 70px 0; }
-  section.branches .inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .branches-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
-    margin-top: 10px;
-  }
-  .branch-card {
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 1/1;
-    background: var(--blue);
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
-  }
-  .branch-card .bg {
-    width: 100%; height: 100%;
-    background: linear-gradient(160deg, #005cb8, #002d6e);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-  }
-  .branch-card .overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(0,20,60,.85) 0%, rgba(0,20,60,.2) 100%);
-    display: flex; align-items: flex-end;
-    padding: 10px;
-    transition: background .25s;
-  }
-  .branch-card:hover .overlay { background: linear-gradient(0deg, rgba(232,4,27,.85) 0%, rgba(232,4,27,.3) 100%); }
-  .branch-card .branch-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    line-height: 1.2;
-  }
+    .topbar .left {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
 
-  /* ── RESULTS CTA ── */
-  .results-cta {
-    background: var(--gray-light);
-    padding: 60px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .results-cta .inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    text-align: center;
-  }
-  .results-cta h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 14px;
-  }
-  .results-cta p { color: var(--gray); margin-bottom: 32px; font-size: 15px; }
-  .results-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-  .results-btns a {
-    padding: 16px 40px;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    transition: all .2s;
-    display: inline-block;
-  }
-  .results-btns a.primary { background: var(--blue); color: #fff; }
-  .results-btns a.primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,63,138,.25); }
-  .results-btns a.secondary { background: var(--accent); color: #fff; }
-  .results-btns a.secondary:hover { background: #b80215; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,4,27,.25); }
+    .topbar .left a {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
 
-  /* ── VALUES ── */
-  section.values { padding: 70px 0; background: #fff; }
-  section.values .inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 10px; }
-  .value-item { text-align: center; padding: 32px 20px; border-radius: 8px; background: var(--gray-light); transition: box-shadow .25s, transform .25s; }
-  .value-item:hover { box-shadow: 0 8px 28px rgba(0,63,138,.1); transform: translateY(-4px); }
-  .value-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .value-icon { font-size: 36px; margin-bottom: 14px; }
-  .value-item h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--blue);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .value-item p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+    .topbar .left a:hover {
+      color: #a8cfff;
+    }
 
-  /* ── INSURERS ── */
-  section.insurers { padding: 50px 0; background: var(--gray-light); border-top: 1px solid var(--border); }
-  section.insurers .inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  section.insurers h3 {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--blue);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-  .insurers-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-  }
-  .insurer-logo {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 22px;
-    min-width: 100px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--blue);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    transition: box-shadow .2s, border-color .2s;
-    height: 52px;
-  }
-  .insurer-logo:hover { box-shadow: 0 4px 14px rgba(0,63,138,.12); border-color: var(--blue-light); }
+    .topbar .right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    background: #001630;
-    color: rgba(255,255,255,.75);
-    padding: 60px 0 0;
-  }
-  footer .inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px;
-  }
-  .footer-brand .logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 16px;
-    display: block;
-  }
-  .footer-brand .logo span { color: #7ec8ff; }
-  footer p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.55); }
-  .footer-social { display: flex; gap: 10px; margin-top: 20px; }
-  .footer-social a {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(255,255,255,.1);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 14px;
-    transition: background .2s;
-  }
-  .footer-social a:hover { background: var(--blue-light); }
-  footer h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(255,255,255,.1);
-  }
-  footer ul { list-style: none; }
-  footer ul li { margin-bottom: 9px; }
-  footer ul li a { color: rgba(255,255,255,.55); font-size: 13px; transition: color .15s; display: flex; align-items: center; gap: 6px; }
-  footer ul li a:hover { color: #7ec8ff; }
-  .footer-contact p { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 13px; }
-  .footer-contact .icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-  .footer-bottom {
-    margin-top: 48px;
-    border-top: 1px solid rgba(255,255,255,.07);
-    padding: 18px 24px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    color: rgba(255,255,255,.35);
-  }
-  .footer-bottom-wrap {
-    background: #001630;
-    border-top: 1px solid rgba(255,255,255,.07);
-    margin-top: 48px;
-  }
-  .footer-bottom-wrap .footer-bottom { margin-top: 0; border-top: none; }
+    .topbar .right a {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .3px;
+      transition: background .2s;
+    }
 
-  /* floating CTA */
-  .float-cta {
-    position: fixed;
-    bottom: 28px; right: 28px;
-    background: var(--accent);
-    color: #fff;
-    padding: 14px 22px;
-    border-radius: 50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    box-shadow: 0 6px 24px rgba(232,4,27,.4);
-    z-index: 999;
-    display: flex; align-items: center; gap: 8px;
-    transition: background .2s, transform .2s;
-    cursor: pointer;
-  }
-  .float-cta:hover { background: #b80215; transform: translateY(-2px); }
+    .topbar .right a:hover {
+      background: var(--blue-light);
+    }
 
-  @media(max-width:900px) {
-    .hero .inner { grid-template-columns: 1fr; gap: 30px; }
-    .hero-img { display: none; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .values-grid { grid-template-columns: 1fr 1fr; }
-    .branches-grid { grid-template-columns: repeat(4,1fr); }
-    footer .inner { grid-template-columns: 1fr 1fr; gap: 36px; }
-    .nav-links { display: none; }
-  }
-  @media(max-width:600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .branches-grid { grid-template-columns: repeat(3,1fr); }
-    .values-grid { grid-template-columns: 1fr; }
-    footer .inner { grid-template-columns: 1fr; }
-    .hero-text h1 { font-size: 32px; }
-  }
-</style>
+    .social-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-icons a {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #fff;
+      transition: background .2s;
+    }
+
+    .social-icons a:hover {
+      background: var(--blue-light);
+    }
+
+    /* ── MAIN NAV ── */
+    nav.main-nav {
+      background: #fff;
+      border-bottom: 3px solid var(--blue);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+    }
+
+    nav.main-nav .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+    }
+
+    .nav-logo img {
+      height: 52px;
+    }
+
+    .nav-logo span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--blue);
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      height: 100%;
+    }
+
+    .nav-links>li {
+      position: relative;
+    }
+
+    .nav-links>li>a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 14px;
+      height: 70px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: .2px;
+      transition: color .2s, background .2s;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+    }
+
+    .nav-links>li>a:hover,
+    .nav-links>li>a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #fdf0f1;
+    }
+
+    .nav-links>li>a .arrow {
+      font-size: 9px;
+      opacity: .6;
+    }
+
+    .nav-links>li:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      min-width: 220px;
+      border-top: 3px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+      z-index: 200;
+    }
+
+    .dropdown li {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dropdown li a {
+      display: block;
+      padding: 11px 20px;
+      font-size: 13px;
+      color: var(--blue);
+      font-weight: 500;
+      transition: background .15s, color .15s;
+    }
+
+    .dropdown li a:hover {
+      background: var(--gray-light);
+      color: var(--accent);
+      padding-left: 26px;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 4px;
+      padding: 10px 20px !important;
+      height: auto !important;
+      border-bottom: none !important;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background .2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #b80215 !important;
+      color: #fff !important;
+      background-color: #b80215 !important;
+    }
+
+    /* ── HERO SLIDER ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(120deg, var(--blue) 0%, #001f5c 100%);
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="40" fill="rgba(255,255,255,0.04)"/><circle cx="10" cy="80" r="50" fill="rgba(255,255,255,0.03)"/></svg>') no-repeat center/cover;
+    }
+
+    .hero .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h1 span {
+      color: #7ec8ff;
+    }
+
+    .hero-text p {
+      color: rgba(255, 255, 255, .75);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background .2s, transform .2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #b80215;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(255, 255, 255, .5);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      transition: border-color .2s, background .2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .hero-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .hero-card .stat {
+      margin-bottom: 18px;
+    }
+
+    .hero-card .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .hero-card .stat-num span {
+      color: #7ec8ff;
+      font-size: 22px;
+    }
+
+    .hero-card .stat-label {
+      color: rgba(255, 255, 255, .6);
+      font-size: 12px;
+      letter-spacing: .5px;
+      margin-top: 3px;
+    }
+
+    .hero-card hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, .15);
+      margin: 16px 0;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .slider-dots span {
+      width: 28px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, .3);
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .slider-dots span.active {
+      background: #fff;
+    }
+
+    /* ── SERVICES GRID ── */
+    section.services {
+      padding: 70px 0;
+      background: var(--gray-light);
+    }
+
+    section.services .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 10px;
+      letter-spacing: -.5px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 48px;
+      font-size: 15px;
+    }
+
+    .section-sub::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      margin: 14px auto 0;
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+    }
+
+    .service-card .card-img {
+      width: 100%;
+      height: 190px;
+      background: linear-gradient(135deg, var(--blue) 0%, #0072ce 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-card .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-card .card-img .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--blue) 0%, #004a9a 100%);
+    }
+
+    .service-card .card-img .img-placeholder .icon {
+      font-size: 44px;
+      margin-bottom: 8px;
+    }
+
+    .service-card .card-body {
+      padding: 22px 24px 24px;
+    }
+
+    .service-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .service-card a.card-link {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .2s;
+    }
+
+    .service-card a.card-link:hover {
+      gap: 9px;
+    }
+
+    /* ── STAFF BANNER ── */
+    .staff-banner {
+      background: linear-gradient(90deg, var(--blue) 0%, #005cb8 100%);
+      padding: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .staff-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, .02) 20px, rgba(255, 255, 255, .02) 40px);
+    }
+
+    .staff-banner .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .staff-banner h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      max-width: 500px;
+    }
+
+    .staff-banner h2 span {
+      color: #7ec8ff;
+    }
+
+    .staff-banner p {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 12px;
+      max-width: 480px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── BRANCHES ── */
+    section.branches {
+      padding: 70px 0;
+    }
+
+    section.branches .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .branches-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .branch-card {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1/1;
+      background: var(--blue);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+    }
+
+    .branch-card .bg {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #005cb8, #002d6e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .branch-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0, 20, 60, .85) 0%, rgba(0, 20, 60, .2) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 10px;
+      transition: background .25s;
+    }
+
+    .branch-card:hover .overlay {
+      background: linear-gradient(0deg, rgba(232, 4, 27, .85) 0%, rgba(232, 4, 27, .3) 100%);
+    }
+
+    .branch-card .branch-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      line-height: 1.2;
+    }
+
+    /* ── RESULTS CTA ── */
+    .results-cta {
+      background: var(--gray-light);
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .results-cta .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .results-cta h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    .results-cta p {
+      color: var(--gray);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+
+    .results-btns {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .results-btns a {
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all .2s;
+      display: inline-block;
+    }
+
+    .results-btns a.primary {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .results-btns a.primary:hover {
+      background: var(--blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 63, 138, .25);
+    }
+
+    .results-btns a.secondary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .results-btns a.secondary:hover {
+      background: #b80215;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 4, 27, .25);
+    }
+
+    /* ── VALUES ── */
+    section.values {
+      padding: 70px 0;
+      background: #fff;
+    }
+
+    section.values .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 10px;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: 8px;
+      background: var(--gray-light);
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .value-item:hover {
+      box-shadow: 0 8px 28px rgba(0, 63, 138, .1);
+      transform: translateY(-4px);
+    }
+
+    .value-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .value-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .value-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .value-item p {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* ── INSURERS ── */
+    section.insurers {
+      padding: 50px 0;
+      background: var(--gray-light);
+      border-top: 1px solid var(--border);
+    }
+
+    section.insurers .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section.insurers h3 {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .insurers-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .insurer-logo {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 22px;
+      min-width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      transition: box-shadow .2s, border-color .2s;
+      height: 52px;
+    }
+
+    .insurer-logo:hover {
+      box-shadow: 0 4px 14px rgba(0, 63, 138, .12);
+      border-color: var(--blue-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #001630;
+      color: rgba(255, 255, 255, .75);
+      padding: 60px 0 0;
+    }
+
+    footer .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+    }
+
+    .footer-brand .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .footer-brand .logo span {
+      color: #7ec8ff;
+    }
+
+    footer p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      transition: background .2s;
+    }
+
+    .footer-social a:hover {
+      background: var(--blue-light);
+    }
+
+    footer h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(255, 255, 255, .1);
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer ul li {
+      margin-bottom: 9px;
+    }
+
+    footer ul li a {
+      color: rgba(255, 255, 255, .55);
+      font-size: 13px;
+      transition: color .15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    footer ul li a:hover {
+      color: #7ec8ff;
+    }
+
+    .footer-contact p {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .footer-contact .icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-bottom {
+      margin-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      padding: 18px 24px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .footer-bottom-wrap {
+      background: #001630;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      margin-top: 48px;
+    }
+
+    .footer-bottom-wrap .footer-bottom {
+      margin-top: 0;
+      border-top: none;
+    }
+
+    /* floating CTA */
+    .float-cta {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 6px 24px rgba(232, 4, 27, .4);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .2s;
+      cursor: pointer;
+    }
+
+    .float-cta:hover {
+      background: #b80215;
+      transform: translateY(-2px);
+    }
+
+    @media(max-width:900px) {
+      .hero .inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-img {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .branches-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      footer .inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media(max-width:600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .branches-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer .inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="inner">
-    <div class="left">
-      <a href="tel:2536-4000">📞 2536-4000</a>
-      <a href="mailto:info@alteclab.com">✉ info@alteclab.com</a>
-    </div>
-    <div class="right">
-      <a href="#">Portal Médico</a>
-      <a href="#">Tecnología y Equipo</a>
-      <a href="#">Cobertura</a>
-      <div class="social-icons">
-        <a href="#" title="Facebook">f</a>
-        <a href="#" title="Instagram">in</a>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="inner">
+      <div class="left">
+        <a href="tel:2536-4000">📞 2536-4000</a>
+        <a href="mailto:info@alteclab.com">✉ info@alteclab.com</a>
+      </div>
+      <div class="right">
+        <a href="#">Portal Médico</a>
+        <a href="#">Tecnología y Equipo</a>
+        <a href="#">Cobertura</a>
+        <div class="social-icons">
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="Instagram">in</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- MAIN NAV -->
-<nav class="main-nav">
-  <div class="inner">
-    <div class="nav-logo">
-      <span>Alteclab</span>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">Quiénes Somos <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Nuestra empresa</a></li>
-          <li><a href="#">Política de ética</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Laboratorio Clínico <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Laboratorio Clínico</a></li>
-          <li><a href="#">Análisis clínicos</a></li>
-          <li><a href="#">Nuestro equipo</a></li>
-          <li><a href="#">Catálogo de Exámenes</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Consultorios Médicos <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Consultorios Médicos</a></li>
-          <li><a href="#">Médicos</a></li>
-          <li><a href="#">Instalaciones</a></li>
-          <li><a href="#">Contáctenos</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Alteclab Imágenes <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Alteclab Imágenes</a></li>
-          <li><a href="#">Personal</a></li>
-          <li><a href="#">Instalaciones</a></li>
-          <li><a href="#">Servicios</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Fisioterapia <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Instalaciones</a></li>
-          <li><a href="#">Servicios</a></li>
-          <li><a href="#">Equipos</a></li>
-          <li><a href="#">Contáctenos</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Empresas <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Programas de salud</a></li>
-          <li><a href="#">Alteclab Nutrición</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Médicos <span class="arrow">▼</span></a>
-        <ul class="dropdown">
-          <li><a href="#">Tecnologías</a></li>
-          <li><a href="#">Beneficios</a></li>
-          <li><a href="#">Servicios para Médicos</a></li>
-        </ul>
-      </li>
-      <li><a href="#" class="nav-cta">Contáctanos</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="inner">
-    <div class="hero-text">
-      <div class="badge">PROMOCIONES</div>
-      <h1>El mejor servicio<br>a nuestros <span>clientes</span></h1>
-      <p>Garantizamos sus resultados con los más altos estándares de calidad, tecnología de vanguardia y personal altamente capacitado.</p>
-      <div class="hero-btns">
-        <a href="#" class="btn-primary">Conocer más</a>
-        <a href="#" class="btn-outline">Ver ubicaciones</a>
+  <!-- MAIN NAV -->
+  <nav class="main-nav">
+    <div class="inner">
+      <div class="nav-logo">
+        <span>Alteclab</span>
       </div>
-    </div>
-    <div class="hero-img">
-      <div class="hero-card">
-        <div class="stat">
-          <div class="stat-num">+20<span>años</span></div>
-          <div class="stat-label">de experiencia en el mercado</div>
-        </div>
-        <hr>
-        <div class="stat">
-          <div class="stat-num">+18<span>sucursales</span></div>
-          <div class="stat-label">a nivel nacional</div>
-        </div>
-        <hr>
-        <div class="stat">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">disponibilidad de resultados en línea</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider-dots">
-    <span class="active"></span>
-    <span></span>
-    <span></span>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services">
-  <div class="inner">
-    <h2 class="section-title">Nuestros Servicios</h2>
-    <p class="section-sub">Atención integral de salud para toda la familia</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">🔬</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Laboratorio Clínico</h4>
-          <p>Contamos con los últimos avances tecnológicos para garantizar la calidad y eficiencia en cada resultado clínico de nuestros pacientes.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">🩺</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Alteclab Imágenes</h4>
-          <p>Comprometidos con tu bienestar. Nuestras instalaciones fueron diseñadas para ser adecuadas y seguras a las necesidades de cada paciente.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">🏃</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Fisioterapia</h4>
-          <p>Atención de afecciones musculo esqueléticas: secuelas de fracturas, esguinces, cervicalgias, lumbalgias, y procedimientos pre y posquirúrgicos.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">👨‍⚕️</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Consultorios Médicos</h4>
-          <p>Un equipo de médicos calificados y con calidez humana, enfocados en la calidad y eficiencia que nos caracteriza.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">🏢</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Empresas</h4>
-          <p>Alteclab Empresas asegura un servicio de salud integrado para su organización, brindando servicios clínicos a sus empleados.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="card-img">
-          <div class="img-placeholder">
-            <div class="icon">💻</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Portal para Médicos</h4>
-          <p>Nuestros sistemas brindan disponibilidad 24/7 con alto nivel de respuesta para procesar muestras y almacenar resultados de forma confidencial.</p>
-          <a href="#" class="card-link">Ver más →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STAFF BANNER -->
-<div class="staff-banner">
-  <div class="inner">
-    <div>
-      <h2>Personal <span>capacitado</span></h2>
-      <p>La capacitación continua es demostrada con nuestro desarrollo laboral reflejado a los clientes, con el único objetivo de brindar una mejor calidad de atención y satisfacción.</p>
-    </div>
-    <a href="#" class="btn-outline">Ver más →</a>
-  </div>
-</div>
-
-<!-- BRANCHES -->
-<section class="branches">
-  <div class="inner">
-    <h2 class="section-title">NUESTRAS SUCURSALES</h2>
-    <p class="section-sub">Cobertura en todo El Salvador</p>
-    <div class="branches-grid">
-      <!-- Row 1 -->
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Escalón</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Col. Médica 1</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Col. Médica 2</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Col. Médica 3</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Merliot</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Santa Elena</div></div></div>
-      <!-- Row 2 -->
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Sonsonate 1</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">SOMA Plaza</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Santa Tecla</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Constitución</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Lourdes</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Est. del Casco</div></div></div>
-      <!-- Row 3 -->
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Santa Ana 1</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Santa Ana 2</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">Metapán</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">San Martín</div></div></div>
-      <div class="branch-card"><div class="bg">🏥</div><div class="overlay"><div class="branch-name">San Miguel 1</div></div></div>
-      <div class="branch-card" style="background:var(--accent); cursor:pointer; display:flex; align-items:center; justify-content:center;">
-        <div style="text-align:center; padding:14px;">
-          <div style="color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;">Ver todas<br>las sucursales →</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS CTA -->
-<div class="results-cta">
-  <div class="inner">
-    <h2>Obtenga sus resultados en línea</h2>
-    <p>Para acceder a la descarga de sus resultados, seleccione una de las opciones</p>
-    <div class="results-btns">
-      <a href="#" class="primary">🔬 Laboratorio</a>
-      <a href="#" class="secondary">🩺 Imágenes</a>
-    </div>
-  </div>
-</div>
-
-<!-- VALUES -->
-<section class="values">
-  <div class="inner">
-    <h2 class="section-title">Nuestros Valores</h2>
-    <p class="section-sub">Pilares que guían nuestro servicio</p>
-    <div class="values-grid">
-      <div class="value-item">
-        <div class="value-num">01</div>
-        <div class="value-icon">⭐</div>
-        <h4>Calidad</h4>
-        <p>Personal altamente capacitado y tecnologías con sistema operacional inteligente que disminuyen el riesgo de error para brindar exactitud en los resultados.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-num">02</div>
-        <div class="value-icon">💡</div>
-        <h4>Innovación</h4>
-        <p>Cuidamos la salud e integridad de los pacientes a través de equipo de vanguardia y sistemas exclusivos con acceso seguro a resultados confidenciales.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-num">03</div>
-        <div class="value-icon">🤝</div>
-        <h4>Servicios</h4>
-        <p>Enfocados en brindar atención de calidad en todas nuestras áreas mediante la formación continua de nuestro personal para la satisfacción de los pacientes.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-num">04</div>
-        <div class="value-icon">🔧</div>
-        <h4>Tecnología</h4>
-        <p>La inversión continua en equipo y sistemas de salud nos vuelve pioneros en la incorporación de nuevas tecnologías a nivel nacional y latinoamericano.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INSURERS -->
-<section class="insurers">
-  <div class="inner">
-    <h3>Estamos afiliados a la red de aseguradoras</h3>
-    <div class="insurers-logos">
-      <div class="insurer-logo">Seguros Azul</div>
-      <div class="insurer-logo">RPN</div>
-      <div class="insurer-logo">Pali</div>
-      <div class="insurer-logo">miRed</div>
-      <div class="insurer-logo">Mapfre</div>
-      <div class="insurer-logo">SISA</div>
-      <div class="insurer-logo">Asesuisa</div>
-      <div class="insurer-logo">ASSA</div>
-      <div class="insurer-logo">ACSA</div>
-      <div class="insurer-logo">ABank</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="inner">
-    <div class="footer-brand">
-      <span class="logo">Alteclab <span>Laboratorios</span></span>
-      <p>El mejor servicio a nuestros clientes, garantizando sus resultados con los más altos estándares de calidad.</p>
-      <div class="footer-social">
-        <a href="#">f</a>
-        <a href="#">in</a>
-        <a href="#">▶</a>
-      </div>
-    </div>
-    <div>
-      <h4>Nuestros Servicios</h4>
-      <ul>
-        <li><a href="#">→ Laboratorios Clínicos</a></li>
-        <li><a href="#">→ Consultorios Médicos</a></li>
-        <li><a href="#">→ Alteclab Imágenes</a></li>
-        <li><a href="#">→ Fisioterapia</a></li>
-        <li><a href="#">→ Empresas</a></li>
+      <ul class="nav-links">
+        <li>
+          <a href="#">Quiénes Somos <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Nuestra empresa</a></li>
+            <li><a href="#">Política de ética</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Laboratorio Clínico <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Laboratorio Clínico</a></li>
+            <li><a href="#">Análisis clínicos</a></li>
+            <li><a href="#">Nuestro equipo</a></li>
+            <li><a href="#">Catálogo de Exámenes</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Consultorios Médicos <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Consultorios Médicos</a></li>
+            <li><a href="#">Médicos</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Contáctenos</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Alteclab Imágenes <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Alteclab Imágenes</a></li>
+            <li><a href="#">Personal</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Servicios</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Fisioterapia <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Equipos</a></li>
+            <li><a href="#">Contáctenos</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Empresas <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Programas de salud</a></li>
+            <li><a href="#">Alteclab Nutrición</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Médicos <span class="arrow">▼</span></a>
+          <ul class="dropdown">
+            <li><a href="#">Tecnologías</a></li>
+            <li><a href="#">Beneficios</a></li>
+            <li><a href="#">Servicios para Médicos</a></li>
+          </ul>
+        </li>
+        <li><a href="#" class="nav-cta">Contáctanos</a></li>
       </ul>
     </div>
-    <div>
-      <h4>Información</h4>
-      <ul>
-        <li><a href="#">→ Nuestra empresa</a></li>
-        <li><a href="#">→ Nuestro equipo</a></li>
-        <li><a href="#">→ Catálogo de exámenes</a></li>
-        <li><a href="#">→ Tecnología y equipo</a></li>
-        <li><a href="#">→ Política de ética</a></li>
-      </ul>
-    </div>
-    <div class="footer-contact">
-      <h4>Contáctanos</h4>
-      <p><span class="icon">📞</span> 2536-4000</p>
-      <p><span class="icon">✉</span> info@alteclab.com</p>
-      <p><span class="icon">📍</span> 89 Av. Sur y Paseo General Escalón #4525, Edificio Alteclab, San Salvador</p>
-    </div>
-  </div>
-  <div class="footer-bottom-wrap">
-    <div class="footer-bottom">
-      <span>© 2026 Alteclab Laboratorios El Salvador</span>
-      <span>Desarrollado con ❤ en El Salvador</span>
-    </div>
-  </div>
-</footer>
+  </nav>
 
-<!-- Floating CTA -->
-<a href="#" class="float-cta">
-  📅 Agendar Cita
-</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="inner">
+      <div class="hero-text">
+        <div class="badge">PROMOCIONES</div>
+        <h1>El mejor servicio<br>a nuestros <span>clientes</span></h1>
+        <p>Garantizamos sus resultados con los más altos estándares de calidad, tecnología de vanguardia y personal
+          altamente capacitado.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary">Conocer más</a>
+          <a href="#" class="btn-outline">Ver ubicaciones</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <div class="hero-card">
+          <div class="stat">
+            <div class="stat-num">+20<span>años</span></div>
+            <div class="stat-label">de experiencia en el mercado</div>
+          </div>
+          <hr>
+          <div class="stat">
+            <div class="stat-num">+18<span>sucursales</span></div>
+            <div class="stat-label">a nivel nacional</div>
+          </div>
+          <hr>
+          <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">disponibilidad de resultados en línea</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="inner">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-sub">Atención integral de salud para toda la familia</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">🔬</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Laboratorio Clínico</h4>
+            <p>Contamos con los últimos avances tecnológicos para garantizar la calidad y eficiencia en cada resultado
+              clínico de nuestros pacientes.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">🩺</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Alteclab Imágenes</h4>
+            <p>Comprometidos con tu bienestar. Nuestras instalaciones fueron diseñadas para ser adecuadas y seguras a
+              las necesidades de cada paciente.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">🏃</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Fisioterapia</h4>
+            <p>Atención de afecciones musculo esqueléticas: secuelas de fracturas, esguinces, cervicalgias, lumbalgias,
+              y procedimientos pre y posquirúrgicos.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">👨‍⚕️</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Consultorios Médicos</h4>
+            <p>Un equipo de médicos calificados y con calidez humana, enfocados en la calidad y eficiencia que nos
+              caracteriza.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">🏢</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Empresas</h4>
+            <p>Alteclab Empresas asegura un servicio de salud integrado para su organización, brindando servicios
+              clínicos a sus empleados.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="card-img">
+            <div class="img-placeholder">
+              <div class="icon">💻</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h4>Portal para Médicos</h4>
+            <p>Nuestros sistemas brindan disponibilidad 24/7 con alto nivel de respuesta para procesar muestras y
+              almacenar resultados de forma confidencial.</p>
+            <a href="#" class="card-link">Ver más →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAFF BANNER -->
+  <div class="staff-banner">
+    <div class="inner">
+      <div>
+        <h2>Personal <span>capacitado</span></h2>
+        <p>La capacitación continua es demostrada con nuestro desarrollo laboral reflejado a los clientes, con el único
+          objetivo de brindar una mejor calidad de atención y satisfacción.</p>
+      </div>
+      <a href="#" class="btn-outline">Ver más →</a>
+    </div>
+  </div>
+
+  <!-- BRANCHES -->
+  <section class="branches">
+    <div class="inner">
+      <h2 class="section-title">NUESTRAS SUCURSALES</h2>
+      <p class="section-sub">Cobertura en todo El Salvador</p>
+      <div class="branches-grid">
+        <!-- Row 1 -->
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Escalón</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Col. Médica 1</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Col. Médica 2</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Col. Médica 3</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Merliot</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Santa Elena</div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Sonsonate 1</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">SOMA Plaza</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Santa Tecla</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Constitución</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Lourdes</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Est. del Casco</div>
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Santa Ana 1</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Santa Ana 2</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">Metapán</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">San Martín</div>
+          </div>
+        </div>
+        <div class="branch-card">
+          <div class="bg">🏥</div>
+          <div class="overlay">
+            <div class="branch-name">San Miguel 1</div>
+          </div>
+        </div>
+        <div class="branch-card"
+          style="background:var(--accent); cursor:pointer; display:flex; align-items:center; justify-content:center;">
+          <div style="text-align:center; padding:14px;">
+            <div
+              style="color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;">
+              Ver todas<br>las sucursales →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS CTA -->
+  <div class="results-cta">
+    <div class="inner">
+      <h2>Obtenga sus resultados en línea</h2>
+      <p>Para acceder a la descarga de sus resultados, seleccione una de las opciones</p>
+      <div class="results-btns">
+        <a href="#" class="primary">🔬 Laboratorio</a>
+        <a href="#" class="secondary">🩺 Imágenes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="inner">
+      <h2 class="section-title">Nuestros Valores</h2>
+      <p class="section-sub">Pilares que guían nuestro servicio</p>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <div class="value-icon">⭐</div>
+          <h4>Calidad</h4>
+          <p>Personal altamente capacitado y tecnologías con sistema operacional inteligente que disminuyen el riesgo de
+            error para brindar exactitud en los resultados.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <div class="value-icon">💡</div>
+          <h4>Innovación</h4>
+          <p>Cuidamos la salud e integridad de los pacientes a través de equipo de vanguardia y sistemas exclusivos con
+            acceso seguro a resultados confidenciales.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <div class="value-icon">🤝</div>
+          <h4>Servicios</h4>
+          <p>Enfocados en brindar atención de calidad en todas nuestras áreas mediante la formación continua de nuestro
+            personal para la satisfacción de los pacientes.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">04</div>
+          <div class="value-icon">🔧</div>
+          <h4>Tecnología</h4>
+          <p>La inversión continua en equipo y sistemas de salud nos vuelve pioneros en la incorporación de nuevas
+            tecnologías a nivel nacional y latinoamericano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURERS -->
+  <section class="insurers">
+    <div class="inner">
+      <h3>Estamos afiliados a la red de aseguradoras</h3>
+      <div class="insurers-logos">
+        <div class="insurer-logo">Seguros Azul</div>
+        <div class="insurer-logo">RPN</div>
+        <div class="insurer-logo">Pali</div>
+        <div class="insurer-logo">miRed</div>
+        <div class="insurer-logo">Mapfre</div>
+        <div class="insurer-logo">SISA</div>
+        <div class="insurer-logo">Asesuisa</div>
+        <div class="insurer-logo">ASSA</div>
+        <div class="insurer-logo">ACSA</div>
+        <div class="insurer-logo">ABank</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner">
+      <div class="footer-brand">
+        <span class="logo">Alteclab <span>Laboratorios</span></span>
+        <p>El mejor servicio a nuestros clientes, garantizando sus resultados con los más altos estándares de calidad.
+        </p>
+        <div class="footer-social">
+          <a href="#">f</a>
+          <a href="#">in</a>
+          <a href="#">▶</a>
+        </div>
+      </div>
+      <div>
+        <h4>Nuestros Servicios</h4>
+        <ul>
+          <li><a href="#">→ Laboratorios Clínicos</a></li>
+          <li><a href="#">→ Consultorios Médicos</a></li>
+          <li><a href="#">→ Alteclab Imágenes</a></li>
+          <li><a href="#">→ Fisioterapia</a></li>
+          <li><a href="#">→ Empresas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#">→ Nuestra empresa</a></li>
+          <li><a href="#">→ Nuestro equipo</a></li>
+          <li><a href="#">→ Catálogo de exámenes</a></li>
+          <li><a href="#">→ Tecnología y equipo</a></li>
+          <li><a href="#">→ Política de ética</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contáctanos</h4>
+        <p><span class="icon">📞</span> 2536-4000</p>
+        <p><span class="icon">✉</span> info@alteclab.com</p>
+        <p><span class="icon">📍</span> 89 Av. Sur y Paseo General Escalón #4525, Edificio Alteclab, San Salvador</p>
+      </div>
+    </div>
+    <div class="footer-bottom-wrap">
+      <div class="footer-bottom">
+        <span>
+          © <span id="current-year"></span> Alteclab Laboratorios El Salvador
+        </span>
+        <span>Desarrollado con ❤ en El Salvador</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA -->
+  <a href="#" class="float-cta">
+    📅 Agendar Cita
+  </a>
+
+  <!-- Linking the external JS file -->
+  <script src="script.js"></script>
 
 </body>
+
 </html>
